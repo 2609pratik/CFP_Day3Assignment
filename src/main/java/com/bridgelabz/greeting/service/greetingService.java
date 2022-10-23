@@ -1,7 +1,6 @@
 package com.bridgelabz.greeting.service;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -36,5 +35,16 @@ public class greetingService {
 
 	public greetingModel getGreetMsg(int id) {
 		return repo.findById(id).get();
-	} 
+	}
+
+	public void deleteGreet(int id) {
+		repo.deleteById(id);
+	}
+
+	public void updateGreetMessage(greetingModel data, int id) {
+		repo.deleteById(id);
+		repo.save(data);
+	}
+
+	 
 }

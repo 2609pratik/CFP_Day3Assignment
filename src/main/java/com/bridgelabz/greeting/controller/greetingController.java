@@ -4,6 +4,7 @@ import java.util.List;
 
 //import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -45,7 +46,7 @@ public class greetingController {
 	}
 	////UC5 Retrieve 
 	@GetMapping("/message/{id}")
-	public greetingModel getmessage(@PathVariable int id) {
+	public greetingModel getMessage(@PathVariable int id) {
 		greetingModel response = service.getGreetMsg(id);
 		return response;
 	}
@@ -53,5 +54,15 @@ public class greetingController {
 	@PostMapping("/getAll")
 	public List<greetingModel> getmessage() {
 		return service.getMsg();
+	}
+	//UC7
+		@PostMapping("/update/{id}")
+		public void greetMessage(@RequestBody greetingModel data , @PathVariable int id ) {
+			service.updateGreetMessage(data, id);
+		}
+	////UC8 Delete 
+	@DeleteMapping("/deletemessage/{id}")
+	public void deleteMessage(@PathVariable int id) {
+		service.deleteGreet(id);
 	}
 }
